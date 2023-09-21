@@ -139,11 +139,22 @@ const impuestoALaCompraExterior = (precio) => {
 
 // Crear un programa que calcule el promedio general de tres notas que da el usuario:
 
-const primerNota = Number(prompt("Ingrese la primer nota"))
-const segundaNota = Number(prompt("Ingrese la segundaNota nota"))
-const terceraNota = Number(prompt("Ingrese la tercera nota"))
+// const primerNota = Number(prompt("Ingrese la primer nota"))
+// const segundaNota = Number(prompt("Ingrese la segundaNota nota"))
+// const terceraNota = Number(prompt("Ingrese la tercera nota"))
 
 const calcularPromedio = () => {
     const totalNotas = primerNota + segundaNota + terceraNota
     return totalNotas / 3
 }
+
+/*
+- Crear una funcion que reciba como parametros un nombre, una edad, una profesion y un pais y retorne un string con la concatenacion de los datos ingresados. Probar con varios datos varias veces para comprobar funcionamiento.
+Ejemplo: Me llamo Pepa, tengo 30 anios, vivo en Colombia y soy abogada.
+*/
+
+const hola = (nombre , edad , profesion , pais) => {
+    return  `Hola! mi nombre es ${nombre}, tengo ${edad} años, soy ${profesion}, y vivo en ${pais}`
+}
+
+console.log(hola("Pilar", 26, "Dev", "Argentina"))
