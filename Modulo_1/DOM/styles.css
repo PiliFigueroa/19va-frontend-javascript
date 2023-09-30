@@ -1,0 +1,29 @@
+.box {
+    width: 200px;
+    height: 200px;
+}
+
+.box-xl {
+    width: 400px;
+    height: 400px;    
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.visibility--hidden {
+    display: none;
+}
+
+#meme-container {
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

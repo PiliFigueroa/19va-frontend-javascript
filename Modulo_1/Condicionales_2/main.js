@@ -177,13 +177,13 @@ Con esta información, el programa deberá incrementar el número cinco veces la
 'Incremento 5: 11'
 */
 
-const numero = parseInt(prompt("Ingrese un numero")) // 6
-const incremento = parseInt(prompt("Ingrese un incremento")) // 2
+// const numero = parseInt(prompt("Ingrese un numero")) // 6
+// const incremento = parseInt(prompt("Ingrese un incremento")) // 2
 
-const incrementar = () => {
-    alert(`Incremento 1: ${numero + incremento}`)
-    alert(`Incremento 2: ${numero + (incremento*2)}`)
-    alert(`Incremento 3: ${numero + (incremento*3)}`)
-    alert(`Incremento 4: ${numero + (incremento*4)}`)
-    alert(`Incremento 5: ${numero + (incremento*5)}`)
-}
+// const incrementar = () => {
+//     alert(`Incremento 1: ${numero + incremento}`)
+//     alert(`Incremento 2: ${numero + (incremento*2)}`)
+//     alert(`Incremento 3: ${numero + (incremento*3)}`)
+//     alert(`Incremento 4: ${numero + (incremento*4)}`)
+//     alert(`Incremento 5: ${numero + (incremento*5)}`)
+// }
