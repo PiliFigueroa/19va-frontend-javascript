@@ -1,0 +1,33 @@
+.blue {
+    color: blue;
+}
+
+.red {
+    color: red;
+}
+
+.font-xl {
+    font-size: 50px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.correct {
+    background-color: green;
+    color: #fff;
+}
+
+.incorrect {
+    background-color: red;
+    color: #fff;
+}
