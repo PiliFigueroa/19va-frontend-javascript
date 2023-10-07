@@ -1,0 +1,12 @@
+/* body {
+    height: 2000px;
+} */
+
+.meme {
+    height: 400px;
+    width: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("https://images.thedirect.com/media/article_full/rick1.jpg");
+}

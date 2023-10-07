@@ -198,13 +198,13 @@ Crear un documento `html` con una adivinanza (o una pregunta) y 3 botones con po
 //     $("#secondAnswer").classList.add("correct")
 // })
 
-$("#thirdAnswer").addEventListener("click", () => {
-    responderAdivinanza("¡Le erraste!")
-    $("#firstAnswer").classList.add("incorrect")
-    $("#secondAnswer").classList.add("correct")
-    $("#thirdAnswer").classList.add("incorrect")
-})
+// $("#thirdAnswer").addEventListener("click", () => {
+//     responderAdivinanza("¡Le erraste!")
+//     $("#firstAnswer").classList.add("incorrect")
+//     $("#secondAnswer").classList.add("correct")
+//     $("#thirdAnswer").classList.add("incorrect")
+// })
 
 // const welcome = () => console.log("Hola Pili")
 
-$("#firstAnswer").addEventListener("click", welcome)
+// $("#firstAnswer").addEventListener("click", welcome)
