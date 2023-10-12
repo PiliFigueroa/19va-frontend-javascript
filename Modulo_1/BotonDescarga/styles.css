@@ -1,0 +1,8 @@
+.meme {
+    background-image: url("https://eu-images.contentstack.com/v3/assets/blt781c383a1983f673/bltd738a53947def686/621c74d2846aaf46df68cb57/Wrangler_20x_20Rick_20and_20Morty.png?width=734&auto=webp&format=png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 400px;
+    height: 400px;
+}
