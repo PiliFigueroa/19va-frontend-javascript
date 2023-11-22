@@ -7,7 +7,7 @@ const local = {
       {
         fecha: new Date(2019, 1, 4),
         nombreVendedora: "Grace",
-        componentes: ["Monitor GPRS 3000", "Motherboard ASUS 1500"],
+        componentes: ["Monitor GPRS 3000", "Monitor GPRS 3000"],
         sucursal: "Centro",
       },
       {
@@ -141,3 +141,52 @@ const local = {
       { componente: "RAM Quinston Fury", precio: 230 },
     ],
   };
+
+// ### precioMaquina
+// - Crear una funcion `precioMaquina(componentes)` que recibe un array de componentes y devuelve el precio de la máquina que se puede armar con esos componentes, que es la suma de los precios de cada componente incluido.
+
+// const precioComponente = (componente) => {
+//     const { precios } = local
+//     // Recorro el array de precios de mi variable local
+//     for (const articulo of precios) {
+//         // Pregunto si el articulo que estoy recorriendo coincide con el objeto que recorro en cada vuelta, si da true, devuelvo ese precio
+//         if (componente === articulo.componente) {
+//             // El retorno me devuelve el precio de ESE componente que dio true, y finaliza la ejecucion de mi funcion
+//             return articulo.precio
+//         }
+//     }
+// }
+
+// console.log(precioComponente("Motherboard ASUS 1500"))
+
+// const precioMaquina = (componentes) => {
+//     let precioTotal = 0
+//     // Recorro el array de componentes que recibo de argumento
+//     for (const componente of componentes) {
+//         // Sumo y acumulo lo que me devuelve mi funcion auxiliar => recibe el nombre del componente que estoy recorriendo (string)
+//         precioTotal += precioComponente(componente)
+//     }
+//     return precioTotal
+// }
+
+// console.log(precioMaquina(["Motherboard ASUS 1500", "RAM Quinston"])) // 230
+// console.log(precioMaquina(["RAM Quinston Fury", "Monitor GPRS 3000"]))
+
+// ### cantidadVentasComponente
+// - Crear una funcion `cantidadVentasComponente(componente)` que recibe un componente y devuelve la cantidad de veces que fue vendido, o sea que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está identificada por la variable ventas.
+
+// const cantidadVentasComponente = (componente) => {
+//     const { ventas } = local
+//     let acc = 0
+//     for (const venta of ventas) {
+//         for (const articulo of venta.componentes) {
+//             if (articulo === componente) {
+//                 acc += 1
+//             }
+//         }
+//     }
+//     return acc
+// }
+
+// console.log(cantidadVentasComponente("Monitor GPRS 3000"))
+// console.log(cantidadVentasComponente("Motherboard ASUS 1500"))
