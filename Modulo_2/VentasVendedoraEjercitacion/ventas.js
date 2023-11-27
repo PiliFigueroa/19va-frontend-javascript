@@ -188,8 +188,8 @@ const cantidadVentasComponente = (componente) => {
     return acc
 }
 
-// console.log(cantidadVentasComponente("Monitor GPRS 3000"))
-// console.log(cantidadVentasComponente("Motherboard ASUS 1500"))
+console.log(cantidadVentasComponente("Monitor GPRS 3000"))
+console.log(cantidadVentasComponente("Motherboard ASUS 1500"))
 
 // ### componenteMasVendido
 // - Crear una funcion `componenteMasVendido()`, devuelve el nombre del componente que más ventas tuvo historicamente. El dato de la cantidad de ventas es el que indica la función `cantidadVentasComponente`.
@@ -276,3 +276,83 @@ console.log(vendedoraDelMes(1, 2019))
 //   }
 //   return mayor(vendedoraMes)
 // }
+
+// ### ventasMes
+// - Crear una funcion `ventasMes(mes, anio)` debe obtener las ventas de un mes. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
+
+const ventasMes = (mes, anio) => {
+  mes--
+  const { ventas } = local
+  const filtradoPorFecha = ventas.filter(({ fecha }) => fecha.getMonth() === mes && fecha.getFullYear() === anio)
+  let totalVentas = 0
+  for (const { componentes } of filtradoPorFecha) {
+    totalVentas += precioMaquina(componentes)
+  }
+  return totalVentas
+}
+
+// console.log(ventasMes(1, 2019))
+// console.log(ventasMes(2, 2019))
+
+// ### ventasVendedora
+// - Crear una funcion `ventasVendedora(nombre)` debe obtener las ventas totales realizadas por una vendedora sin límite de fecha.
+
+const ventasVendedora = (nombre) => {
+  const { ventas } = local
+  const ventasPorVendedora = ventas.filter(({ nombreVendedora }) => nombreVendedora === nombre)
+  return ventasPorVendedora.length
+}
+
+// console.log(ventasVendedora("Ada"))
+// console.log(ventasVendedora("Grace"))
+
+// ### componenteMasVendido
+// - Crear una funcion `componenteMasVendido()`, devuelve el nombre del componente que más ventas tuvo historicamente. El dato de la cantidad de ventas es el que indica la función `cantidadVentasComponente`.
+
+const componenteMasVendido = () => {
+  const { ventas } = local
+  const componentesVendidos = {}
+  for (const { componentes } of ventas) {
+    let acc = 0
+    for (const componente of componentes) {
+      acc = cantidadVentasComponente(componente)
+      componentesVendidos[componente] = acc
+    }
+  }
+  let masVendido = ""
+  let cantidadVendida = 0
+  for (const key in componentesVendidos) {
+    if (componentesVendidos[key] > cantidadVendida) {
+      cantidadVendida = componentesVendidos[key]
+      masVendido = key
+    }
+  }
+  return masVendido
+}
+
+// const componenteMasVendido2 = () => {
+//   let mayorCant = 0
+//   let nombreComponente = ""
+//     for (const { componente } of local.precios) {
+//         if (cantidadVentasComponente(componente) > mayorCant){
+//             mayorCant = cantidadVentasComponente(componente)
+//             nombreComponente = componente
+//         }
+//     }
+//   return nombreComponente
+// }
+
+console.log(componenteMasVendido())
+
+// ### huboVentas
+// - Crear una funcion `huboVentas(mes, anio)` que indica si hubo ventas en un mes determinado. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
+
+const huboVentas = (mes, anio) => {
+  mes--
+  const { ventas } = local
+  return ventas.some(({ fecha }) => fecha.getMonth() === mes && fecha.getFullYear() === anio)
+}
+
+// console.log(huboVentas(1, 2019))
+// console.log(huboVentas(2, 2019))
+// console.log(huboVentas(3, 2019))
