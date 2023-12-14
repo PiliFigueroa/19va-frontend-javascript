@@ -19,22 +19,22 @@ const getData = (key) => JSON.parse(localStorage.getItem(key))
 const setData = (key, data) => localStorage.setItem(key, JSON.stringify(data))
 
 const defaultProfessions = [
-    {
-        id: randomId(),
-        professionName: "Developer"
-    },
-    {
-        id: randomId(),
-        professionName: "Designer"
-    },
-    {
-        id: randomId(),
-        professionName: "Project Manager"
-    },
-    {
-        id: randomId(),
-        professionName: "SCRUM Master"
-    }
+{
+    id: randomId(),
+    professionName: "Developer"
+},
+{
+    id: randomId(),
+    professionName: "Designer"
+},
+{
+    id: randomId(),
+    professionName: "Project Manager"
+},
+{
+    id: randomId(),
+    professionName: "SCRUM Master"
+}
 ]
 
 const allUsers = getData("users") || []
@@ -68,13 +68,14 @@ const renderUsers = (users) => {
 }
 
 const renderProfessionsTable = (professions) => {
+    cleanContainer("#table-professions")
     for (const profession of professions) {
         $("#table-professions").innerHTML += `
             <tr>
                 <td>${profession.professionName}</td>
                 <td>
                     <button class="btn btn-success"><i class="fa-solid fa-pencil"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteAction('${profession.id}')"><i class="fa-solid fa-trash"></i></button>
                 </td>
             </tr>
         `
@@ -99,7 +100,7 @@ const saveUserInfo = (userId) => {
         fullname: $("#fullname").value,
         profession: $("#professions").value,
         email: $("#email").value,
-        age: $("#age").value
+        age: $("#age").valueAsNumber
     }
 }
 
@@ -145,6 +146,74 @@ const editUser = () => {
     setData("users", currentData)
 }
 
+const deleteProfession = (professionId) => {
+    const currentProfession = getData("professions").filter(profession => profession.id != professionId)
+    setData("professions", currentProfession)
+    return currentProfession
+}
+
+const deleteAction = (professionId) => { 
+    renderProfessionsTable(deleteProfession(professionId))
+    const currentData = getData("users").filter(user => user.profession != professionId)
+    setData("users", currentData)
+}
+
+const calculateAgeAverage = () => {
+    const currentData = getData("users")
+    let acc = 0
+    for (const user of currentData) {
+        acc += user.age
+    }
+    return Math.round(acc / currentData.length)
+}
+
+/* Validations */
+
+const validateForm = (field) => {
+    const regEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
+    const fullname = $("#fullname").value.trim()
+    const email = $("#email").value.trim()
+    const age = $("#age").valueAsNumber
+    const validationPassed = fullname !== "" && regEmail.test(email) && age > 0
+
+    switch (field) {
+        case "fullname":
+            if (fullname === "") {
+                showElement([".fullname-error"])
+                $("#fullname").classList.add("border-danger")
+            } else {
+                hideElement([".fullname-error"])
+                $("#fullname").classList.remove("border-danger")
+            }
+            break
+        case "email":
+            if (!regEmail.test(email)) {
+                showElement([".email-error"])
+                $("#email").classList.add("border-danger")
+            } else {
+                hideElement([".email-error"])
+                $("#email").classList.remove("border-danger")
+            }
+            break
+        case "age":
+            if (!age) {
+                showElement([".age-error"])
+                $("#age").classList.add("border-danger")
+            } else {
+                hideElement([".age-error"])
+                $("#age").classList.remove("border-danger")
+            }
+            break
+        default:
+            alert("Error")
+    }
+    if (validationPassed) {
+        $("#btn-submit").removeAttribute("disabled")
+    } else {
+        $("#btn-submit").setAttribute("disabled", true)
+    }
+}
+
 /* EVENTS */
 
 const initializeApp = () => {
@@ -153,10 +222,11 @@ const initializeApp = () => {
     renderUsers(allUsers)
     renderProfessionsTable(allProfessions)
     renderProfessionOptions(allProfessions)
+    $("#age-average").innerText = calculateAgeAverage()
     $("#add-user-btn").addEventListener("click", () => {
         $(".form").reset()
         showElement([".form", "#btn-submit"])
-        hideElement([".table", "#btn-edit", ".no-results", ".table-professions", ".form-profession"])
+        hideElement([".table", "#btn-edit", ".no-results", ".table-professions", ".form-profession", ".filters"])
     })
 
     $("#btn-submit").addEventListener("click", (e) => {
@@ -172,7 +242,7 @@ const initializeApp = () => {
     })
 
     $("#add-profession-btn").addEventListener("click", () => {
-        hideElement([".table", ".no-results", ".form"])
+        hideElement([".table", ".no-results", ".form", ".filters"])
         showElement([".form-profession", ".table-professions"])
     })
 
@@ -182,6 +252,10 @@ const initializeApp = () => {
         const filteredUsers = currentData.filter(user => user.profession === professionId)
         renderUsers(filteredUsers)
     })
+
+    $("#fullname").addEventListener("blur", () => validateForm("fullname"))
+    $("#email").addEventListener("blur", () => validateForm("email"))
+    $("#age").addEventListener("blur", () => validateForm("age"))
 }
 
 window.addEventListener("load", initializeApp)

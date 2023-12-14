@@ -58,6 +58,15 @@
         </tbody>
     </table>
 
+    <!-- Age average -->
+    <div class="container age-average">
+        <div class="row">
+            <div class="col">
+                <h5>Age Average:</h5><span id="age-average"></span>
+            </div>
+        </div>
+    </div>
+
     <!-- No results box -->
     <div class="no-results container">
         <div class="row">
@@ -104,10 +113,10 @@
         <div class="mb-3">
             <label for="age" class="form-label">Age</label>
             <input type="number" class="form-control" name="age" id="age" placeholder="Age">
-            <p class="text-danger d-none age-error"><i class="fa-sharp fa-solid fa-circle-exclamation me-2"></i>Your age must be higher than 18 and lower than 65</p>
+            <p class="text-danger d-none age-error"><i class="fa-sharp fa-solid fa-circle-exclamation me-2"></i>This field is required</p>
         </div>
         <div class="mb-3">
-            <button class="btn btn-primary" id="btn-submit">Submit</button>
+            <button class="btn btn-primary" id="btn-submit" disabled="true">Submit</button>
             <button class="btn btn-success" id="btn-edit">Edit</button>
         </div>
     </form>
